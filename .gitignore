@@ -1,0 +1,7 @@
+/node_modules/*
+output.css
+input.css
+package-lock.json
+package.json
+tailwind.config.js
+Task1_Frontend/input.css
