@@ -2,7 +2,10 @@ import React from 'react';
 
 function Home(){
     return (
-        <h1 className="text-3xl font-bold underline text-center text-green-300">Hello world!</h1>
+        <>
+            <p className="text-3xl font-bold underline text-center text-blue-500 p-2">Welcome to the Best Website in the World</p>
+            <p className="text-3xl font-bold text-center text-blue-500 p-2">We will make you a millionaire</p>
+        </>
     );
 }
 

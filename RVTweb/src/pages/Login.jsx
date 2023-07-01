@@ -1,8 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login(){
+function Login(props){
+    const [submittedOnce, setSubmittedOnce] = useState(false)
+    const [userExists, setUserExists] = useState(false);
+
+    // const loggedIn = props.loggedIn;
+    const {loggedIn, setLoggedIn, userNumber, setUserNumber, userDetails} = props;
+
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -15,29 +21,28 @@ function Login(){
         setPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         // Prevent browser refresh on submit. 
         event.preventDefault();
+        setSubmittedOnce(true);
 
-        // Perform login logic here, such as sending login credentials to a server
+        // for testing
         console.log('Username:', username);
         console.log('Password:', password);
 
-        // Compare
-        const userList = ['admin', 'dev', 'john', 'test'];
-        const passList = ['admin', 'dev', 'john', 'test'];
-
-        let userExists = false;
-        let loggedIn = false;
-        for(let i = 0; i < userList.length; i++){
-            if(username === userList[i]){
+        setUserExists(false);
+        for(let i = 1; i < userDetails.length; i++){
+            
+            if(username === userDetails[i][0]){
                 console.log("User exists");
-                userExists = true;
+                setUserExists(true);
             }
             
-            if(username === userList[i] && password === passList[i]){
+            if(username === userDetails[i][0] && password === userDetails[i][1]){
                 console.log('Login successful');
-                loggedIn = true;
+                setLoggedIn(true);
+                setUserNumber(i);
+                console.log("loggedIn:", loggedIn)
                 break;
             }
         }
@@ -45,11 +50,14 @@ function Login(){
         if(!userExists){
             console.log('User does not exist');
         }
-
-        if(loggedIn){
-            navigate('/');
-        }
       };
+
+    useEffect(() => {
+        console.log("refreshed")
+      if(loggedIn) {
+        navigate('/profile');
+      }
+    }, [loggedIn]);
 
     return (
         <div>
@@ -61,6 +69,13 @@ function Login(){
                     <input type="text" value={username} onChange={handleUsernameChange} className='m-4 p-1 bg-green-100 outline outline-1'/>
                 </label>
                 </div>
+                {
+                    submittedOnce
+                    &&
+                    !userExists 
+                    &&
+                    (<p className='text-red-300'>Unfortunately, username doesn't exist</p>)
+                }
 
                 <div>
                 <label>
@@ -68,7 +83,14 @@ function Login(){
                     <input type="password" value={password} onChange={handlePasswordChange} className='m-4 p-1 bg-green-100 outline outline-1'/>
                 </label>
                 </div>
-                
+                {
+                    userExists 
+                    &&
+                    !loggedIn
+                    &&
+                    (<p className='text-red-300'>Unfortunately, password is incorrect.</p>)
+                }
+
                 <div>
                 <button type="submit" className='outline outline-1 p-1 px-3 m-3 bg-green-300'>Login</button>
                 </div>
