@@ -74,7 +74,7 @@ function Login(props){
                     &&
                     !userExists 
                     &&
-                    (<p className='text-red-300'>Unfortunately, username doesn't exist</p>)
+                    (<p className='text-red-500'>Unfortunately, username doesn't exist</p>)
                 }
 
                 <div>
@@ -88,7 +88,7 @@ function Login(props){
                     &&
                     !loggedIn
                     &&
-                    (<p className='text-red-300'>Unfortunately, password is incorrect.</p>)
+                    (<p className='text-red-500'>Unfortunately, password is incorrect.</p>)
                 }
 
                 <div>
