@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Profile(props){
-    const {loggedIn, setLoggedIn, userNumber, setUserNumber, userDetails} = props;
+    const {userNumber, setUserNumber, userDetails} = props;
     return (
         <div className='flex'>
                 <div className="w-1/2 inline-block">

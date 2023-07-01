@@ -52,8 +52,9 @@ function Login(props){
         }
       };
 
+    // goes to profile page when logged in
     useEffect(() => {
-        console.log("refreshed")
+        console.log("going to profile")
       if(loggedIn) {
         navigate('/profile');
       }
