@@ -21,6 +21,8 @@ function Leaderboard(props){
                 <h2 className=" text-3xl text-left font-bold hover:font-extrabold">Top Gainers</h2>
             </div>
 
+            {/* FLEXBOXES OF FLEXCOLUMNS , BREAK WORDS IMPLEMENTED, WIDTH=FIXED = 100%. Problem: Not as neat on mobile devices.
+            
             <div className="flex justify-center">
                 {[userStats[1], userStats[0], userStats[2]].map(
                         (item, index) => 
@@ -28,31 +30,24 @@ function Leaderboard(props){
                                 <div key={item.username} className="relative border-[1px] border-solid border-black m-2 w-[30%] flex flex-col overflow-hidden">
                                     <div className="flex items-center justify-start flex-col overflow-hidden">
                                         <div className={`${index === 1 ? "bg-purple-400" : ""} w-[100%] border-none`}>
-                                        {/* <div className="bg-purple-400 w-[100%] border-none"> */}
                                             <p className="text-2xl my-2 font-bold break-words w-[100%]">{addCommasToNumber(item.contribution)}</p>
                                         </div>
                                         <div className=" w-full relative flex justify-center items-center border-none">
                                             <div className={`${index===1?'bg-purple-400':''} h-[50%] absolute top-0 left-0 w-full`}></div>
-                                            {/* <div className="bg-purple-400 h-[50%] absolute top-0 left-0 w-full"></div> */}
                                             <img className="w-[80px] h-[80px] rounded-full z-0" src={item.pfp} alt="Profile Picture" />
                                         </div>
                                         
-                                        {/* <div className=''> */}
                                             <p className="text-2xl font-bold break-words w-[100%]">{item.name}</p>
-                                        {/* </div> */}
                                         <p className="break-words w-[100%]">@{item.username}</p>
                                         <button className="hover:border-green-500 border-[2px] border-green-300 text-green-500 font-bold text-[0.8rem]  self-end break-words mr-2 mb-2 max-w-[90px] w-[70%]">Congratulate</button>
-                                        {/* <br></br>
-                                        <br></br> */}
                                     </div>
                                     <div className="bg-purple-400">
-                                        {/* <button className="hover:border-green-500 border-[2px] border-green-300 text-green-500 font-bold text-[0.8rem]  self-end absolute bottom-2 right-2 break-words max-w-[90px] w-[70%]">Congratulate</button> */}
                                     </div>
                                 </div>
                             )
                     )
                 }
-            </div>
+            </div> */}
 
             <div className="container mx-auto p-4 w-[100%]">
                 <table className=" table-auto border-separate border-spacing-x-3 w-[100%]">
@@ -124,8 +119,52 @@ function Leaderboard(props){
                 <h2 className=" text-3xl text-left font-bold hover:font-extrabold">All Users</h2>
             </div>
 
+            <div className="container mx-auto p-4 w-[100%]">
+                <table className="table-auto border-separate border-spacing-y-5 border-spacing w-[100%]">
+                    <thead>
+                        <tr>
+                            <th className=" text-left pl-4 w-[25%]">Name</th>
+                            <th className=" text-left pl-8 w-[12%]">Contribution</th>
+                            <th className=" text-left pl-4 w-[12%]">Followers</th>
+                            <th className=" text-left pl-4 w-[11%]">Posts</th>
+                            <th className=" text-left pl-4 w-[30%]">Email</th>
+                            <th className=" text-left pl-4 w-[10%]">Congratulate</th>
+                        </tr>
+                    </thead>
 
-            {/*
+                    <tbody>
+                        {
+                            userStats.map(
+                                (item) => (
+                                    <tr className="" key={item.username}>
+                                        <td className=" flex flex-row items-center text-left border px-4 py-2 border-y-2 border-l-2 border-r-0 border-gray-100">
+                                            <img className="m-2 w-[50px] h-[50px] rounded-full" src={item.pfp} alt="Profile Picture" />
+                                            
+                                            <div className="flex-col flex">
+                                                <p className="text-xl font-bold">{item.name}</p>
+                                                <p className=" text-sm text-gray-500">@{item.username}</p>
+                                            </div>
+                                        </td>
+
+                                        <td className=" font-bold text-2xl text-left border pl-8 pr-4 py-2 border-y-2 border-x-0 border-gray-100">{addCommasToNumber(item.contribution)}</td>
+                                        <td className=" text-xl text-left border px-4 py-2 border-y-2 border-x-0 border-gray-100">{addCommasToNumber(item.followers)}</td>
+                                        <td className=" text-xl text-left border px-4 py-2 border-y-2 border-x-0 border-gray-100">{addCommasToNumber(item.posts)}</td>
+                                        <td className=" text-left border px-4 py-2 border-y-2 border-x-0 border-gray-100">{item.email}</td>
+                                        <td className=" text-left border px-4 py-2 border-y-2 border-l-0 border-r-2 border-gray-100">
+                                            <button className="hover:bg-green-600 bg-green-500 text-white p-1 text-sm">
+                                                Congratulate
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            )
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            {/* COLUMNS USING FLEXCOL. PROBLEM : No fixed width
+
                 <div className="flex w-full">
                 <div className="flex flex-auto w-[200px] flex-col items-start justify-center bg-green-400">
                 <p className="bg-red-300 font-bold">User</p>
@@ -215,7 +254,9 @@ function Leaderboard(props){
             </div>
             */
             }
-            {/* <div className="w-full">
+            {/* ROWS OF FLEX BOXES STACKED. PROBLEM : No fixed height
+            
+            <div className="w-full">
                 <div className="flex font-bold">
                     <span className="flex flex-auto w-[200px] justify-center bg-green-400">User</span>
                     <span className="flex flex-auto w-[100px] justify-center bg-blue-400">Contribution</span>
@@ -256,51 +297,6 @@ function Leaderboard(props){
                             )
                         }
             </div> */}
-
-
-             <div className="container mx-auto p-4 w-[100%]">
-                <table className="table-auto border-separate border-spacing-y-5 border-spacing w-[100%]">
-                    <thead>
-                        <tr>
-                            <th className=" text-left pl-4 w-[25%]">Name</th>
-                            <th className=" text-left pl-8 w-[12%]">Contribution</th>
-                            <th className=" text-left pl-4 w-[12%]">Followers</th>
-                            <th className=" text-left pl-4 w-[11%]">Posts</th>
-                            <th className=" text-left pl-4 w-[30%]">Email</th>
-                            <th className=" text-left pl-4 w-[10%]">Congratulate</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {
-                            userStats.map(
-                                (item) => (
-                                    <tr className="" key={item.username}>
-                                        <td className=" flex flex-row items-center text-left border px-4 py-2 border-y-2 border-l-2 border-r-0 border-gray-100">
-                                            <img className="m-2 w-[50px] h-[50px] rounded-full" src={item.pfp} alt="Profile Picture" />
-                                            
-                                            <div className="flex-col flex">
-                                                <p className="text-xl font-bold">{item.name}</p>
-                                                <p className=" text-sm text-gray-500">@{item.username}</p>
-                                            </div>
-                                        </td>
-
-                                        <td className=" font-bold text-2xl text-left border pl-8 pr-4 py-2 border-y-2 border-x-0 border-gray-100">{addCommasToNumber(item.contribution)}</td>
-                                        <td className=" text-xl text-left border px-4 py-2 border-y-2 border-x-0 border-gray-100">{addCommasToNumber(item.followers)}</td>
-                                        <td className=" text-xl text-left border px-4 py-2 border-y-2 border-x-0 border-gray-100">{addCommasToNumber(item.posts)}</td>
-                                        <td className=" text-left border px-4 py-2 border-y-2 border-x-0 border-gray-100">{item.email}</td>
-                                        <td className=" text-left border px-4 py-2 border-y-2 border-l-0 border-r-2 border-gray-100">
-                                            <button className="hover:bg-green-600 bg-green-500 text-white p-1 text-sm">
-                                                Congratulate
-                                            </button>
-                                        </td>
-                                    </tr>
-                                )
-                            )
-                        }
-                    </tbody>
-                </table>
-            </div>
         </>
     );
 }
